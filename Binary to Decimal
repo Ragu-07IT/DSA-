@@ -13,3 +13,22 @@ int main(){
      printf("Decimal of %i is %i ",n,sum);
     return 0;
 }
+
+                  OR
+
+#include<stdio.h>
+#include<math.h>
+int main(){
+    int n,sum=0,p=0;
+    printf("Enter the binary number:");
+    scanf("%i",&n);
+    int temp=n,rem;
+    while(temp!=0){
+        rem=temp%10;
+        sum=sum+rem*pow(2,p);
+        p++;
+        temp=temp/10;
+    }
+    printf("Decimal of %i is %i",n,sum);
+    return 0;
+}
