@@ -1,0 +1,17 @@
+#include<stdio.h>
+int main(){
+    int n, bin=0;
+    printf("Enter the Number: ");
+    scanf("%i", &n);
+    int temp = n;
+    int place = 1;
+
+    while (temp != 0){
+        int rem = temp%2;
+        bin = bin + rem * place; 
+        temp /= 2;
+        place *= 10;
+    }
+    printf("Binary of %i is %i", n, bin);
+    return 0;
+}
