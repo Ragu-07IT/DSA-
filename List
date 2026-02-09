@@ -40,12 +40,33 @@ void insertAtPosition(int pos,int value){
 void deletefromBeg(){
     if(n==0){
         printf("List is Empty!!!\n");
+        return;
     }
     for(int i=0;i<n-1;i++){
         list[i]=list[i+1];
     }
     n--;
     printf("Element is deleted!!!\n");
+}
+
+void deleteFromEnd(){
+    if(n==0){
+        printf("List is Empty!!!\n");
+    }
+    n--;
+    printf("Element is Deleted!!!\n");
+}
+
+void deleteFromPosition(int pos){
+    if(n==0){
+        printf("List is Empty!!!\n");
+        return;
+    }
+    for(int i=pos;i<n-1;i++){
+        list[i]=list[i+1];
+    }
+    n--;
+    printf("Element is Deleted!!!/n");
 }
 
 void displaylist(){
@@ -58,7 +79,6 @@ void displaylist(){
     }
     printf("\n");
 }
-
 
 int main(){
     while(1){
@@ -98,11 +118,16 @@ int main(){
              deletefromBeg();
                 break;
             case 5:
+             deleteFromEnd();
                 break;
             case 6:
+             printf("Enter Position:");
+             scanf("%i",&pos);
+             deleteFromPosition(pos);
                 break;
             case 7:
                 displaylist();
+                printf("\t");
                 break;
             case 8:
                 break;
