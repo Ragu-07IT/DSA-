@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<stdlib.h>
 #define MAX 100
 int list[MAX];
 int n = 0;
@@ -80,6 +81,47 @@ void displaylist(){
     printf("\n");
 }
 
+int search(int value){
+    if(n==0){
+        printf("List is Empty!!!\n");
+    }
+    for(int i=0;i<n;i++){
+        if(list[i]==value){
+            return i;
+        }
+    }
+    return -1;
+}
+
+int updatelist(int pos,int value){
+    if(n==0){
+        printf("List is Empty!!!\n");
+    }
+    if(pos>0 || pos<n){
+        printf("Invalid Position!!!\n");
+    }
+    list[pos]=value;
+    printf("List Updated!!!\n");
+}
+
+void bubblesort(){
+    if(n==0){
+        printf("List is Empty!!!\n");
+    }
+    else{
+        for(int i=0;i<n-1;i++){
+            for(int j=0;j<n-i-1;j++){
+                if(list[j] > list[j+1]){
+                    int temp=list[j];
+                    list[j]=list[j+1];
+                    list[j+1]=temp;
+                }
+            }
+            printf("Element Sorted!!!\n");
+        }
+    }
+}
+
 int main(){
     while(1){
         printf("1. Insert In Beginning\n");
@@ -90,7 +132,7 @@ int main(){
         printf("6. Delete From Given Position\n");
         printf("7. Display List\n");
         printf("8. Search Element in list\n");
-        printf("0. Update Element In List\n");
+        printf("9. Update Element In List\n");
         printf("10. Sort Elements In List\n");
         printf("11. Exit\n");
         int choice,data,pos;
@@ -130,12 +172,28 @@ int main(){
                 printf("\t");
                 break;
             case 8:
+             printf("Enter The Element To Search For:");
+             scanf("%i",&data);
+             int index= search(data);
+             if(index != -1){
+                printf("\tElement is at Position :%i\t",index);
+             }
+             else{
+                printf("Element Not Found!!!\n");
+             }
                 break;
             case 9:
+             printf("Enter the Poition:");
+             scanf("%i",&pos);
+             printf("Enter the Element:");
+             scanf("%i",&data);
+             updatelist(pos,data);
                 break;
             case 10:
+             bubblesort();
                 break;
             case 11:
+             exit(0);
                 break;
             default:
                 printf("Invalid Choice!!!\n");
