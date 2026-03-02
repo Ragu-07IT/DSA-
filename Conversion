@@ -84,44 +84,49 @@ char* InfixtoPrefix(char* infixExp){
     prefix[plen] = '\0';
 
     return prefix;
-}
+} 
 
+char* PostfixToInfix(char* postfixExp){ 
+    int len = strlen(postfixExp), top = -1; 
+    char stack[100][len]; 
+    for(int i=0; i<len; i++){ 
+        char ch = postfixExp[i]; 
+        if(isalnum(ch)){ 
+            char str[] = {ch, '\0'}; 
+            strcpy(stack[++top], str);
+        } 
+        else if(ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '^'){ 
+            char *s1 = stack[top--]; 
+            char* s2 = stack[top--]; 
+            char s3[100] = ""; 
+            sprintf(s3, "(%s%c%c)", s2, ch, s1); 
+            strcpy(stack[++top], s3);
+        }
 
-char* convertPostfixToInfix(char* postfixExp){
-    int len=strlen(postfixExp),top=-1;
-    char stack[100][len];
-    for(int i=0;i<len;i++){
-        char ch=postfixExp[i];
-        if(isalnum(ch)){
-            char str[]={ch,'\0'};
-            strcpy(stack[++top],str);
-        }
-        else if(ch=='+'||ch=='-'||ch=='*'||ch=='/'||ch=='^'){
-            char* s1=stack[top--];
-            char* s2=stack[top--];
-            char* s3[top]="";
-            sprintf(s3,"(%s%c%s)",s2,ch,s1);
-            strcpy(stack[++top],s3);
-        }
-    }
-    char *infix=(char*)malloc(strlen(stack[top])+1);
-    strcpy(infix,stack[top--]);
+    }  
+    char *infix = (char*) malloc(strlen(stack[top]+1));  
+    strcpy(infix, stack[top--]); 
     return infix;
+
 }
 
 int main(){  
-    char expr[100];
+    char exp[100];
 
     printf("Enter Infix Expression: ");
-    gets(expr);
+    gets(exp);
 
-    char* postfix = conInfixToPostfix(expr);
-    char* prefix = InfixtoPrefix(expr);
+    char* postfix = conInfixToPostfix(exp);
+    char* prefix = InfixtoPrefix(exp);
 
     printf("Postfix Expression: %s\n", postfix);
-    printf("Prefix Expression: %s\n", prefix);
-    gets(expr);
-    printf("Infix Expression: %s\n",PostfixToInfix(exp));
+    printf("Prefix Expression: %s\n", prefix); 
+
+    printf("Enter Postfix Expression: ");
+    gets(exp); 
+
+    printf("Infix expression = %s\n", PostfixToInfix(exp));
+
 
     return 0;
 }
