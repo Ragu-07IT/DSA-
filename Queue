@@ -70,13 +70,13 @@ int main(){
                 dequeue();
                 break;
             case 3:
-                
+                peek();
                 break;
             case 4:
-
+                display();
                 break;
             case 5:
-
+                return -1;
                 break;
         }
     }
