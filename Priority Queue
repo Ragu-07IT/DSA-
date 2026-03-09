@@ -1,14 +1,15 @@
 #include<stdio.h>
+#include<stdlib.h>
 #define MAX 100
-strict Queue{
+struct Queue{
     int data;
     int priority;
 };
 struct Queue pqueue[MAX];
-int front=-1;rear=-1;
+int front=-1,rear=-1;
 
 int isFull(){
-    return front==rear;
+    return front==MAX-1;
 }
 
 int isEmpty(){
@@ -60,7 +61,7 @@ int dequeue(){
     }
 }
 
-void peek(){
+int peek(){
      if(isEmpty()){
         printf("Queue Underflow!!!\n");
         return -1;
@@ -97,7 +98,7 @@ int main(){
             printf("Enter value: ");
                 scanf("%d",&value);
                 printf("Enter Priority: ");
-                scanf("%d",&prioriity);
+                scanf("%d",&priority);
                 enqueue(value,priority);
                 break;
             case 2:
