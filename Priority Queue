@@ -1,0 +1,75 @@
+#include<stdio.h>
+#define MAX 100
+strict Queue{
+    int data;
+    int priority;
+};
+struct Queue pqueue[MAX];
+int front=-1;rear=-1;
+int isFull(){
+    return front==rear;
+}
+
+int isEmpty(){
+    return front==-1;
+}
+   
+void enqueue(int data,int priority){
+    if(isFull()){
+        printf("Queue Overflow!!!\n");
+        return;
+    }
+    rear++;
+    pqueue[rear].data=data;
+    pqueue[rear].priority=priority;
+    if(front==-1)
+        front=rear;
+    printf("Element inserted in priority queue!!!\n");
+    }
+
+void dequeue(){
+    
+}
+
+void peek(){
+     i
+}
+
+void display(){
+    
+}
+
+int main(){
+    int choice,value;
+      while(1){
+        printf("1.Enqueue\n");
+        printf("2.Dequeue\n");
+        printf("3.Peek\n");
+        printf("4.Display\n");
+        printf("5.Exit\n");
+        printf("Enter choice: ");
+        scanf("%d",&choice);
+        switch(choice){
+            case 1:
+            printf("Enter value: ");
+                scanf("%d",&value);
+                enqueue(value);
+                break;
+            case 2:
+                value=dequeue();
+                if(value!=-1)
+                    printf("%d dequeue from the circular queue!!!\n",value);
+                break;
+            case 3:
+                value= peek();
+                printf("%d is at top of Queue\n",value);
+                break;
+            case 4:
+                display();
+                break;
+            case 5:
+                return -1;
+                break;
+        }
+    }
+    return 0;
