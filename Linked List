@@ -20,7 +20,43 @@ void insertInBeg(int data){
     printf("Node insterted in beginning!!!\n");
 }
 
+void insertAtEnd(int data){
+    struct Node* newNode=create(data);
+    if(head==NULL){
+        head = newNode;
+    }
+    else{
+        struct Node* temp=head;
+        while(temp->next != NULL){
+            temp=temp->next;
+        }
+        printf("Node Inserted In End!!!\n");
+    }
+}
 
+void insertAtAnyPos(int data,int pos){
+    if(head==NULL)
+        printf("List is Empty!!!\n");
+    else if(pos==0)
+        insertInBeg(data);
+    else{
+        struct Node* temp=head;
+        int i=0;
+        while(temp!=NULL){
+            if(i==pos-1)
+                break;
+            temp=temp->next;
+        }
+        if(temp==next)
+            printf("Invalid Position!!!\n");
+        else{
+            struct Node* newNode=createNode(data);
+            newnode->next=temp->next;
+            temp->next=newNode;
+            printf("Node inserted at position %d successfully!!\n",pos);
+        }
+    }
+}
 
 int main(){
     while(1){
