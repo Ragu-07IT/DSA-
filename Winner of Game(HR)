@@ -1,0 +1,44 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct Node{
+    int data;
+    struct Node* next;
+};
+struct Node* head=NULL;
+struct Node* createNode(int data){
+    struct Node* temp=(struct Node*)malloc(sizeof(struct Node));
+    temp->data=data;
+    temp->next=NULL;
+    return temp;
+}
+
+int main(){
+    int n,val;
+    scanf("%d",&n);
+    struct Node* tail=NULL;
+    for(int i=0;i<n;i++){
+        scanf("%d",&val);
+        struct Node* newnode=createNode(val);
+        if(head==NULL)
+            head=newnode;
+        else
+            tail->next=newnode;
+        tail=newnode;
+    }
+    int odd=0,even=0;
+    struct Node* temp=head;
+    for(int i=0;i<n;i+=2){
+        if(temp->data>temp->next->data)
+            even++;
+        else  if(temp->data<temp->next->data)
+            odd++;
+        temp=temp->next->next;
+    }
+    if(even==odd)
+        printf("Tie");
+    else if(even>odd)
+        printf("Even");
+    else
+        printf("Odd");
+    return 0;
+}
