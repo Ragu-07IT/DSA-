@@ -22,3 +22,16 @@ void insertatanypos(int data,int pos){
                 insertatend(data);
          }
         }   
+
+void countNode(){
+    if(head==NULL){
+        return 0;
+    }
+    int count = 1;
+    struct Node* temp=head->next;
+    while(temp!=head){
+        count++;
+        temp=temp->next;
+    }
+    return count;
+}
