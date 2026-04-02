@@ -1,0 +1,24 @@
+void insertatanypos(int data,int pos){
+     if(head ==NULL && pos==1){
+        insertinbeg();
+    }
+    else if(pos == 1){
+        insertinbeg(data);
+    }
+    else{
+        struct Node* temp = head;
+        int i = 1;
+        do{
+            temp = temp->next;
+            i++;
+       }
+       while(i!=pos-1&&temp->next!=head);
+           if(temp->next!=head){
+               struct Node* newNode=createNode(data);
+               newNode->next=temp->next;
+               temp->next=newNode;
+              }
+            else if(i==pos-1)
+                insertatend(data);
+         }
+        }   
