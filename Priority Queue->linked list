@@ -1,0 +1,90 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct Node{
+    int data;
+    int priority;
+    struct Node* next;
+};
+struct Node* front=NULL,*rear=NULL;
+void enqueue(int data,int priority){
+    struct Node* newNode=(struct Node*)malloc(sizeof(struct Node));
+    if(newNode==NULL)
+        printf("Queue Overflow!!!\n");
+    else{
+        newNode->data=data;
+        newNode->priority=priority;
+        newNode->next=NULL;
+        if(rear==NULL)
+            rear=newNode;
+        else
+            rear->next=newNode;
+        if(front==NULL)
+            front=rear;
+        printf("Element added in queue!!!\n");
+    }
+}
+struct Node* getHighestPriority(){
+    struct Node* curr=front->next,*prev=NULL,*temp=NULL;
+    int max=0;
+
+    while(curr!=NULL){
+        if(curr->priority>max){
+            max=curr->priority;
+            if(curr!=front)
+                temp=prev;;
+        }
+
+    }
+}
+int dequeue(){
+    if(front==NULL && rear==NULL)
+        printf("Queue Underflow!!!\n");
+    else if(front == rear){
+        int val=front->data;
+        front=rear=NULL;
+        return val;
+    }
+    else{
+        struct Node* temp = getHighestPriority();
+    }
+}
+int main(){
+    int choice,value,priority;
+      while(1){
+        printf("1.Enqueue\n");
+        printf("2.Dequeue\n");
+        printf("3.Peek\n");
+        printf("4.Display\n");
+        printf("5.Exit\n");
+        printf("Enter choice: ");
+        scanf("%d",&choice);
+        switch(choice){
+            case 1:
+            printf("Enter value: ");
+                scanf("%d",&value);
+                printf("Enter Priority: ");
+                scanf("%d",&priority);
+                enqueue(value,priority);
+                break;
+            case 2:
+                value=dequeue();
+                if(value!=-1)
+                    printf("%d dequeue from the Priority Queue!!!\n",value);
+                break;
+            case 3:
+                value=peek();
+                if(value!=-1)
+                    printf("Highest Priority element is %d in Queue!!!\n",value);
+                break;
+            case 4:
+                display();
+                break;
+            case 5:
+                exit(0);
+                break;
+            default:
+                printf("Invalid Choice!!!\n");
+        }
+    }
+    return 0;
+}
