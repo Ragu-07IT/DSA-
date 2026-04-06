@@ -18,6 +18,7 @@ void enqueue(int data,int priority){
             rear=newNode;
         else
             rear->next=newNode;
+            rear=newNode;
         if(front==NULL)
             front=rear;
         printf("Element added in queue!!!\n");
@@ -31,9 +32,10 @@ struct Node* getHighestPriority(){
         if(curr->priority>max){
             max=curr->priority;
             if(curr!=front)
-                temp=prev;;
+                temp=prev;
         }
-
+        prev=curr;
+        curr=curr->next;
     }
 }
 int dequeue(){
@@ -46,11 +48,51 @@ int dequeue(){
     }
     else{
         struct Node* temp = getHighestPriority();
+        int val;
+        if(temp==NULL){
+            val=front->data;
+            front=front->next;
+        }
+        else{
+            val=temp->next->data;
+            temp->next=temp->next->next;
+        }
+        return val;
+    }
+}
+int peek(){
+    if(front == NULL && rear == NULL){
+        printf("Queue Underflow!!!\n");
+        return -1;
+    }
+    else if(front == rear)
+        return front->data;
+    else{
+        struct  Node* temp=getHighestPriority();
+        int val;
+        if(temp==NULL)
+            val=front->data;
+        else
+            val=temp->next->data;
+        return val;
+    }
+}
+
+void show(){
+    if(front == NULL)
+        printf("Queue Underflow!!!\n");
+    else{
+        struct Node* temp=front;
+        while(temp!=NULL){
+            printf("%d ",temp->data);
+            temp=temp->next;
+        }
     }
 }
 int main(){
     int choice,value,priority;
       while(1){
+        printf("\n***** Queue Priority Menu ******\n");
         printf("1.Enqueue\n");
         printf("2.Dequeue\n");
         printf("3.Peek\n");
@@ -77,7 +119,7 @@ int main(){
                     printf("Highest Priority element is %d in Queue!!!\n",value);
                 break;
             case 4:
-                display();
+                show();
                 break;
             case 5:
                 exit(0);
